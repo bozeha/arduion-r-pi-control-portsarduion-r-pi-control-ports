@@ -1,0 +1,24 @@
+    body
+    {
+
+
+    }
+    .row a img
+    {
+
+        max-width:200px;
+        padding:20px;
+        border:10px solid lightblue;
+
+    }
+    .container
+    {
+        padding-top:100px;
+
+    }
+
+    .row img,a
+    {
+        display:block;
+        margin:0 auto;
+    }

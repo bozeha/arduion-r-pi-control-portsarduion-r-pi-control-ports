@@ -16,7 +16,16 @@
     <title>Document</title>
 
 <script type="text/javascript">
-          
+
+function iframeOn()
+{
+
+    current_url =window.location.href+":8081";
+current_url = current_url.replace("http://", "");
+current_url = current_url.replace("/", "");
+current_url = current_url.replace("#", "");
+$('iframe').attr('src',"http://"+current_url);
+}
                   function runCommand(command)
                   {
                     $.ajax({
@@ -56,9 +65,14 @@
         <div class="col-md-2">
             <a href="#" onclick="runCommand('last')" class="post"><img src='images/q.png'/></a>
         </div>
+        <div class="col-md-2">
+            <a href="#" id="display-video" onclick="runCommand('video');$('#stop-video').css('display','block');$('#display-video').css('display','none');iframeOn()" class="post"><img src='images/video.jpg'/></a>
+            <a href="#" id="stop-video" style="display:none" onclick="runCommand('close-video');$('#stop-video').css('display','block');$('#display-video').css('display','none')" class="post"><img src='images/video.jpg'/></a>
+        </div>
     </div>
-
 </div>
-     
+     <div class="container">
+     <iframe src="http://192.168.1.2:8081"></iframe>
+     </div>
 </body>
 </html>

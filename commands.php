@@ -43,6 +43,20 @@ if (isset($_POST['command']))
         echo $output;
         break;
 
+
+        case "video":
+        $command = escapeshellcmd("sudo motion");
+        $output = shell_exec($command);
+        echo $output;
+        break;
+
+
+        case "close-video":
+        $command = escapeshellcmd("sudo service motion stop");
+        $output = shell_exec($command);
+        echo $output;
+        break;
+
         
 
 

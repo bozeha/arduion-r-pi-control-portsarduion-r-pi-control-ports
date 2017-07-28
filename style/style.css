@@ -1,0 +1,113 @@
+
+
+    .buttons-big
+    {
+        width:105px !important;
+        display:inline-block;
+        
+    }
+     #all-buttons
+     {
+      display:table;
+      margin:0 auto;
+     }
+    .buttons-big:last-child a img
+    {
+        border-right:5px solid lightblue;
+        padding-bottom:5px;
+            background-color: white;
+    }
+    .row a img
+    {
+
+        max-width:105px;
+        padding:0px;
+        border-left:5px solid lightblue;
+        border-bottom:5px solid lightblue;
+        border-top:5px solid lightblue;
+
+    }
+    .container
+    {
+        /*padding-top:100px;*/
+
+    }
+
+    .row img,a
+    {
+        display:block;
+        margin:0 auto;
+    }
+iframe
+{
+    width: 663px;
+    height: 485px;
+    display:block;
+    margin:0 auto;
+}
+
+.header
+{
+    background-color:black;
+
+}
+.header .container
+{
+    padding-top:0px;
+}
+#logo
+{
+    width: 150px;
+    height: 100px;
+    background-image: url(../images/aqua.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#top-buttons
+{
+    width: 70px;
+    height: 100px;
+    background-image: url(../images/reset.png);
+    background-repeat: no-repeat;
+        background-size: 60px;
+    background-position-y: 50%;
+    cursor:pointer;
+}
+#main-con
+{
+    background-image:url(../images/aqua-bg.jpg);
+    height:1310px;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+
+.buttons-big
+    {
+        width:80px !important;
+        display:inline-block;
+        
+    }
+    .row a img
+    {
+
+        max-width:67px;
+        padding:0px;
+        border-left:5px solid lightblue;
+        border-bottom:5px solid lightblue;
+        border-top:5px solid lightblue;
+        border-right:5px solid lightblue;
+
+    }
+    iframe
+    {
+        width:300px;
+    }
+    #main-con
+    {
+        height:1110px;
+    }
+    
+}

@@ -44,6 +44,13 @@ if (isset($_POST['command']))
         break;
 
 
+        case "info":
+        $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
+        $output = shell_exec($command);
+        echo $output;
+        break;
+
+
         case "video":
         $command = escapeshellcmd("sudo motion");
         $output = shell_exec($command);
@@ -55,6 +62,12 @@ if (isset($_POST['command']))
         $command = escapeshellcmd("sudo service motion stop");
         $output = shell_exec($command);
         echo $output;
+        break;
+        
+        case "reboot":
+        $command = escapeshellcmd("sudo reboot");
+        $output = shell_exec($command);
+        echo "$output";
         break;
 
         

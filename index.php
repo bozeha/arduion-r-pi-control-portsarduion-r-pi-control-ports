@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style/style.css">
    
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,14 +12,14 @@
 
 <!-- Latest compiled JavaScript -->
 <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/scripts/loop.js"></script>
+<script type="text/javascript" src="/scripts/loop2.js"></script>
     <meta charset="UTF-8">
     <title>Document</title>
-
 <script type="text/javascript">
-
+$( document ).ready(function(){ get_info("111");}) 
 function iframeOn()
 {
+
 
     current_url =window.location.href+":8081";
 current_url = current_url.replace("http://", "");
@@ -29,6 +29,8 @@ $('iframe').attr('src',"http://"+current_url);
 }
                   function runCommand(command)
                   {
+
+
                     $.ajax({
                         url: "commands.php",
                         type: "POST",
@@ -37,56 +39,117 @@ $('iframe').attr('src',"http://"+current_url);
                             //alert(data);
                         },
                         error: function(){
-                              alert("yyyyyyy");
+                              console.log("yyyyyyy");
                         }
                     });
+                    get_info("111");
                   }
-        </script>
 
 
+        function get_info(str) {
+        buttons_info=null;     
 
-<script>
+            $.ajax({
+            url: "commands.php",
+            type: "POST",
+            data: { command: "info" },
+            success: function(data){
+                //alert(data);
+            
+
+                    var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                console.log(this.responseText);
+                buttons_info = this.responseText;
+                fixButtonsStyle();
+            }
+        };
+        xmlhttp.open("POST", "get_info.php", true);
+        xmlhttp.send();
+    
+            
+            
+            },
+            error: function(){
+                    console.log("yyyyyyy");
+            }
+            });
 
 
+        }
+
+        function fixButtonsStyle()
+        {
+
+        buttons_info = buttons_info.replace("start", "");
+        buttons_info = buttons_info.replace("end1", "");
+        for(var x=5;x!=-1;x--)
+        {
+          if(buttons_info[x]==0)
+          {
+            $("#all-buttons .buttons-big:eq("+x+") img").css('filter','blur(0px)');
+          }
+          else
+          {
+            $("#all-buttons .buttons-big:eq("+x+") img").css('filter','blur(3px)');
+          }
+
+        }
+        }
 </script>
-
-
-
-
-
 
 
 
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-md-2">    
-            <a href="#" onclick="runCommand('fan')" class="post"><img src='images/fan.jpg'/></a>
-        </div>
-        <div class="col-md-2">    
-            <a href="#" onclick="runCommand('light')" class="post"><img src='images/light.jpg'/></a>
+<div class="header">
+    <div class="container">
+        <div class="row">
+            <div id="logo" class="pull-left">
             </div>
-        <div class="col-md-2">
-            <a href="#" onclick="runCommand('skimmer')" class="post"><img src='images/skimmer.jpg'/></a>
+            
+            <div class="pull-right" id="top-buttons" onclick="runCommand('reboot')">
             </div>
-        <div class="col-md-2">
-            <a href="#" onclick="runCommand('upload')" class="post"><img src='images/upload.jpg'/></a>
-            </div>
-        <div class="col-md-2">
-            <a href="#" onclick="runCommand('wave')" class="post"><img src='images/wave.jpg'/></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" onclick="runCommand('last')" class="post"><img src='images/q.png'/></a>
-        </div>
-        <div class="col-md-2">
-            <a href="#" id="display-video" onclick="runCommand('video');$('#stop-video').css('display','block');$('#display-video').css('display','none');iframeOn()" class="post"><img src='images/video.jpg'/></a>
-            <a href="#" id="stop-video" style="display:none" onclick="runCommand('close-video');$('#stop-video').css('display','block');$('#display-video').css('display','none')" class="post"><img src='images/video.jpg'/></a>
+    
         </div>
     </div>
 </div>
-     <div class="container">
+<div id="main-con">
+    <div class="container big-buttons">
+        <div class="row">
+            <div id="all-buttons">
+                <!--<div class="buttons-big">    
+                    <a href="javascript:void(0)" onclick="runCommand('info')" class="post"><img src='images/info.png'/></a>
+                </div>-->
+                <div class="buttons-big">    
+                    <a href="javascript:void(0)" onclick="runCommand('light')" class="post"><img src='images/light.jpg'/></a>
+                    </div>
+                <div class="buttons-big">    
+                    <a href="javascript:void(0)" onclick="runCommand('fan')" class="post"><img src='images/fan.jpg'/></a>
+                </div>
+                <div class="buttons-big">
+                    <a href="javascript:void(0)" onclick="runCommand('skimmer')" class="post"><img src='images/skimmer.jpg'/></a>
+                    </div>
+                <div class="buttons-big">
+                    <a href="javascript:void(0)" onclick="runCommand('wave')" class="post"><img src='images/wave.jpg'/></a>
+                </div>
+                <div class="buttons-big">
+                    <a href="javascript:void(0)" onclick="runCommand('upload')" class="post"><img src='images/upload.jpg'/></a>
+                    </div>
+                <div class="buttons-big">
+                    <a  href="javascript:void(0)" onclick="runCommand('last')" class="post"><img src='images/q.png'/></a>
+                </div>
+                <div class="buttons-big">
+                    <a  href="javascript:void(0)" id="display-video" onclick="runCommand('video');$('#stop-video').css('display','block');$('#display-video').css('display','none');iframeOn()" class="post"><img src='images/video.jpg'/></a>
+                    <a  href="javascript:void(0)" id="stop-video" style="display:none" onclick="runCommand('close-video');$('#stop-video').css('display','block');$('#display-video').css('display','none')" class="post"><img src='images/video.jpg'/></a>
+                </div>
+            </div>
+        </div>
+    </div>
+     <div class="container">    
      <iframe src="http://192.168.1.2:8081"></iframe>
      </div>
+</div>
 </body>
 </html>

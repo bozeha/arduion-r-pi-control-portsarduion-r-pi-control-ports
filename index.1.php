@@ -1,6 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script>
+
+    function get_info() 
+    {//function get info from arduion 2    
+        buttons_info=null;     
+        $.ajax({
+        type: "POST",
+        url: "commands.php",
+        data: {command:"info"},
+            success: function(){
+        
+                console.log("sc")
+            
+        },
+            error: function(){     
+                console.log("err")
+                
+            }
+        }).then(function(){
+
+$.ajax({
+        type: "POST",
+        url: "get_info.php",
+            success: function(data){console.log(data)},
+            error: function(){
+                console.log("err")
+                
+            }
+        })
+
+        });
+    }
+
+
+
+    </script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="style/style.css">
    
@@ -12,78 +48,100 @@
 
 <!-- Latest compiled JavaScript -->
 <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/scripts/loop2.js"></script>
+<!--<script type="text/javascript" src="/scripts/loop2.js"></script>-->
     <meta charset="UTF-8">
     <title>Document</title>
 <script type="text/javascript">
-$( document ).ready(function(){ get_info("111");}) 
-function iframeOn()
+/*$( document ).ready(function(){
+    
+     get_info("111");
+     
+    
+}) */// start get info from second arduion
+function iframeOn() //get the ip and build the iframe 
 {
-
-
-    current_url =window.location.href+":8081";
+current_url =window.location.href+":8081";
 current_url = current_url.replace("http://", "");
 current_url = current_url.replace("/", "");
 current_url = current_url.replace("#", "");
 $('iframe').attr('src',"http://"+current_url);
 }
-                  function runCommand(command)
-                  {
-
-
-                    $.ajax({
-                        url: "commands.php",
-                        type: "POST",
-                        data: { command: command },
-                        success: function(data){
-                            //alert(data);
-                        },
-                        error: function(){
-                              console.log("yyyyyyy");
-                        }
-                    }).then(function(){ get_info("111");});
-                   
-                  }
-
-
-        function get_info(str) {
-        buttons_info=null;     
-
-            $.ajax({
-            url: "commands2.php",
-            type: "POST",
-            data: { command: "info" },
-            success: function(data){
-            },
-            
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            }).then(function(){
-                $.ajax({
-            url: "get_info.php",
-            type: "POST",
-            success: function(data){
-                console.log(data);
-                buttons_info= data;
-                fixButtonsStyle();
-
-            },
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-            })
-
-
+    function runCommand(command)
+    {
+ /*   $.ajax({
+        url: "commands.php",
+        type: "POST",
+        data: { command: command },
+        success: function(data){
+            //alert(data);
+             get_info("111");
+        },
+        error: function(){
+                console.log("yyyyyyy");
         }
+    }).then(function(){get_info();});
+*/
+
+
+
+ $.ajax({
+        'async': false,
+        'type': "POST",
+        'global': false,
+        'dataType': 'html',
+        'url': "commands.php",
+         'data': { command: command },
+        'success': function () {
+            get_info();
+            console.log('123');
+        }
+    });
+    }
+
+
+
+
+
+
+
+
+
+
+
+     /*   $.ajax({  // run the command info
+        url: "commands.php",
+        type: "POST",
+        data: { command: "info" },
+        success: function(data){
+        console.log("data:"+data);
+                var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(this.responseText);
+            buttons_info = this.responseText;
+            fixButtonsStyle();
+        }
+    };
+    xmlhttp.open("POST", "get_info.php", true);
+    xmlhttp.send();
+
+        
+        
+        },
+        error: function(){
+                console.log("yyyyyyy");
+        }
+        });
+
+
+    }*/
 
         function fixButtonsStyle()
         {
 
-        //buttons_info = buttons_info.replace("start", "");
-        //buttons_info = buttons_info.replace("end1", "");
-        buttons_info= buttons_info.substring(5, 11);
+   //     buttons_info = buttons_info.replace("start", "");
+     //   buttons_info = buttons_info.replace("end1", "");
+        buttons_info = buttons_info.substring(5, 11);
         for(var x=5;x!=-1;x--)
         {
           if(buttons_info[x]==0)

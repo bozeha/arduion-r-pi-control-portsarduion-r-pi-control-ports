@@ -14,9 +14,6 @@ if (isset($_POST['command']))
         $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
         $output = shell_exec($command);
         echo $output;
-       
-       /* $value =  array('LIGHT' => $command );
-        echo json_encode($value);*/
         break;
 
         case "skimmer":
@@ -70,11 +67,7 @@ if (isset($_POST['command']))
         echo "$output";
         break;
 
-        
-
-
     }  
-
 }
 
 

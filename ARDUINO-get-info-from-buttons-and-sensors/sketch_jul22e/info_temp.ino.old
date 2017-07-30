@@ -1,3 +1,18 @@
+//for home temp
+
+#include "DHT.h"
+#define dht_apin A0 // Analog Pin sensor is connected to
+ 
+dht DHT;
+
+//for water temp 
+const int sensor=A1; // Assigning analog pin A1 to variable 'sensor'
+float tempc;  //variable to store temperature in degree Celsius
+float tempf;  //variable to store temperature in Fahreinheit 
+float vout;  //temporary variable to hold sensor reading
+
+
+// for reading ports 
 int ledPin = 13; // LED connected to digital pin 13
 int inPin1 = 2;   
 int inPin2 = 3;
@@ -9,9 +24,12 @@ int mainArray[6];
 String command2 ;
 int global_loop =0;
 
-void setup() {
-  // put your setup code here, to run once:
-Serial.begin(9600);     
+
+void setup()
+{
+pinMode(sensor,INPUT); // Configuring pin A1 as input
+Serial.begin(9600);
+// all ports
   pinMode(ledPin, OUTPUT);      // sets the digital pin 13 as output
   pinMode(inPin1, INPUT);      // sets the digital pin 7 as input
   pinMode(inPin2, INPUT);
@@ -22,13 +40,11 @@ Serial.begin(9600);
          //  setup serial
 
 }
+void loop() 
+{
 
-void loop() {
-  // put your main code here, to run repeatedly:
-
-
-  //Serial.println('ssssssssssssss');
-  printArray(mainArray);
+ printArray(mainArray);// get the first values of the ports in load the page 
+ getTemp();// get the value of temp in load of page
   for (int temp=0;;temp++)
   {
        if(Serial.available()) // only if i receve string from r pi inter the if
@@ -38,12 +54,41 @@ void loop() {
           {
               printArray(mainArray);          
           }
+          if(command2=="temp")
+          {
+              getTemp();          
+          }
         } 
     
   }
 
 }
 
+
+
+  void getTemp()
+  {
+    vout=analogRead(sensor);
+    vout=(vout*500)/1023;
+    tempc=vout; // Storing value in Degree Celsius
+    Serial.print("water_temp=");
+   // Serial.print("\t");
+    Serial.print(tempc);
+   // Serial.println();
+    delay(1000); //Delay of 1 second for ease of viewing 
+    
+
+    DHT.read11(dht_apin);
+    Serial.print("home_humidity=");
+    Serial.print(DHT.humidity);
+   // Serial.print("%  ");
+    Serial.print("home_temperature=");
+    Serial.print(DHT.temperature); 
+    //Serial.println("C  ");
+   
+    
+    delay(5000);//Wait 5 seconds before accessing sensor again.
+  }
 
 
 void printArray(int mainArray[])
@@ -70,8 +115,8 @@ for(int lop=0;lop!=6;lop++)
   Serial.print(mainArray[4]);
   Serial.print(mainArray[5]);
   Serial.print("end");
-  Serial.print(global_loop);
-  Serial.println();
+ // Serial.print(global_loop);
+ // Serial.println();
 }
 
 

@@ -18,30 +18,37 @@
 <script type="text/javascript">
 $( document ).ready(function(){ 
 
-step0();
-step1();
-step2();
-/*
                     $.ajax({
-                        url: "commands2.php",
+                        url: "commands.php",
                         type: "POST",
                         data: { command:"refresh" },
                         success: function(data){
-                      //        get_info();
-                            console.log('tt');
+                            //alert(data);
                         },
                         error: function(){
                               console.log("yyyyyyy");
                         }
                     })
-                      */
+                    $.ajax({
+            url: "get_info.php",
+            type: "POST",
+            success: function(data){
+                console.log(data);
+                buttons_info= data;
+                fixButtonsStyle();
+
+            },
+            error: function(){
+                    console.log("yyyyyyy");
+            }
+            })
     
     }) 
 function iframeOn()
 {
 
 
-current_url =window.location.href+":8081";
+    current_url =window.location.href+":8081";
 current_url = current_url.replace("http://", "");
 current_url = current_url.replace("/", "");
 current_url = current_url.replace("#", "");
@@ -57,23 +64,16 @@ $('iframe').attr('src',"http://"+current_url);
                         data: { command: command },
                         success: function(data){
                             //alert(data);
-                            /*step0();
-                            step0();
-                            step1();
-                            step1();
-                            step2();                    
-                            step2();                    */
                         },
                         error: function(){
                               console.log("yyyyyyy");
                         }
-                    }).then(function(){step0()}).then(function(){step1()})//.then(function(){step2()})
-                    //.then(function(){ get_info("111"); });
+                    }).then(function(){ get_info("111"); });
                    
                   }
 
 
-        /*function get_info(str) {
+        function get_info(str) {
         buttons_info=null;     
 
             $.ajax({
@@ -104,63 +104,6 @@ $('iframe').attr('src',"http://"+current_url);
 
 
         }
-*/
-        
-        function step0()
-        {
-
-              $.ajax({
-            url: "commands2.php",
-            type: "POST",
-            data: { command: "info" },
-            success: function(data){
-                console.log("v1");
-                step2();
-            },
-            
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-        }
-                function step1()
-        {
-
-              $.ajax({
-            url: "commands2.php",
-            type: "POST",
-            data: { command: "refresh" },
-            success: function(data){
-
-                console.log("v0");
-            },
-            
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-        }
-        
-
-        function step2()
-        {
-         $.ajax({
-            url: "get_info.php",
-            type: "POST",
-            success: function(data){
-                console.log(data);
-                buttons_info= data;
-                fixButtonsStyle();
-                
-
-            },
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-
-        }
-
 
         function fixButtonsStyle()
         {
@@ -194,15 +137,6 @@ $('iframe').attr('src',"http://"+current_url);
             </div>
             
             <div class="pull-right" id="top-buttons" onclick="runCommand('reboot')">
-            </div>
-            <div class="pull-right"  style="bakcground-color:white;border:2px solid red;font-size:20px" onclick="step0()">
-           step0
-            </div>
-            <div class="pull-right"   style="bakcground-color:white;border:2px solid red;font-size:20px"  onclick="step1()">
-            step1
-            </div>
-            <div class="pull-right"   style="bakcground-color:white;border:2px solid red;font-size:20px"  onclick="step2()">
-            step2
             </div>
     
         </div>

@@ -1,2 +1,2 @@
-<?php echo 'start000001end9
+<?php echo 'start100101end1
 ';?>

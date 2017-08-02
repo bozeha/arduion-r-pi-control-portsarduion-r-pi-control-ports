@@ -19,8 +19,8 @@
 $( document ).ready(function(){ 
 
 step0();
-step1();
-step2();
+//step1();
+//step2();
 /*
                     $.ajax({
                         url: "commands2.php",
@@ -56,55 +56,17 @@ $('iframe').attr('src',"http://"+current_url);
                         type: "POST",
                         data: { command: command },
                         success: function(data){
-                            //alert(data);
-                            /*step0();
-                            step0();
-                            step1();
-                            step1();
-                            step2();                    
-                            step2();                    */
+                        
                         },
                         error: function(){
                               console.log("yyyyyyy");
                         }
-                    }).then(function(){step0()}).then(function(){step1()})//.then(function(){step2()})
-                    //.then(function(){ get_info("111"); });
+                    }).then(function(){step0()})//.then(function(){step1()})
+                    
                    
                   }
 
 
-        /*function get_info(str) {
-        buttons_info=null;     
-
-            $.ajax({
-            url: "commands2.php",
-            type: "POST",
-            data: { command: "info" },
-            success: function(data){
-            },
-            
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            }).then(function(){
-                $.ajax({
-            url: "get_info.php",
-            type: "POST",
-            success: function(data){
-                console.log(data);
-                buttons_info= data;
-                fixButtonsStyle();
-
-            },
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-            })
-
-
-        }
-*/
         
         function step0()
         {
@@ -123,6 +85,11 @@ $('iframe').attr('src',"http://"+current_url);
             }
             })
         }
+
+
+
+
+        
                 function step1()
         {
 
@@ -131,7 +98,7 @@ $('iframe').attr('src',"http://"+current_url);
             type: "POST",
             data: { command: "refresh" },
             success: function(data){
-
+                step0();
                 console.log("v0");
             },
             
@@ -149,8 +116,14 @@ $('iframe').attr('src',"http://"+current_url);
             type: "POST",
             success: function(data){
                 console.log(data);
+                current_temp =data;
                 buttons_info= data;
-                fixButtonsStyle();
+                if(buttons_info==""||buttons_info.substring(11,14)!="end")step0();
+                else 
+                    {
+                        fixButtonsStyle();
+                        getTemp(current_temp);
+                    }
                 
 
             },
@@ -180,6 +153,16 @@ $('iframe').attr('src',"http://"+current_url);
           }
 
         }
+        }
+        function getTemp(current_temp)
+        {
+
+            $("#water_temp").text(current_temp.substring(25,30)+"°C");
+            if(current_temp.substring(25,30)>30)$("#water_temp").css("color","red")
+            $("#home_humidity").text(current_temp.substring(44,49)+"%");
+            if(current_temp.substring(44,49)>80)$("#home_humidity").css("color","red")
+            $("#home_temp").text(current_temp.substring(66,71)+"°C");
+            if(current_temp.substring(66,71)>40)$("#home_temp").css("color","red")
         }
 </script>
 
@@ -241,7 +224,24 @@ $('iframe').attr('src',"http://"+current_url);
         </div>
     </div>
      <div class="container">    
-     <iframe src=""></iframe>
+        <div class="row">
+            <div class="col-md-2" id="temp_info">
+                <h1>information:</h1>
+                <div>
+                    <p>טמפרטורת הבית</p>
+                    <span id="home_temp"></span>
+                    <p>לחות</p>
+                    <span id="home_humidity"></span>
+                    <p>טמפרטורת המים באקוריום</p>
+                    <span id="water_temp"></span>
+                    
+                </div>
+            </div>
+            <div class="col-md-8">
+                <iframe src=""></iframe>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
      </div>
 </div>
 </body>

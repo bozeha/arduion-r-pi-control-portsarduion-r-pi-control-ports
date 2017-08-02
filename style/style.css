@@ -1,4 +1,33 @@
-
+    
+    
+    #temp_info
+    {
+    height: 280px;
+    background-color: cornflowerblue;
+    border-radius: 2px;
+    text-align:right;
+    }
+    #temp_info h1
+    {
+        font-size:24px;
+    }
+    #temp_info p
+    {
+        margin: 0 0 10px;
+    padding-top: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    }
+    #temp_info div span
+    {
+        display:block;
+        background-color:gray;  
+        width:100%;
+        height:25px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 18px;
+    }
 
     .buttons-big
     {
@@ -111,3 +140,5 @@ iframe
     }
     
 }
+
+

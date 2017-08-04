@@ -1,3 +1,3 @@
 import serial
 ser = serial.Serial('/dev/arduino-input', 9600)
-ser.write('\n')
+ser.write('info')

@@ -19,22 +19,6 @@
 $( document ).ready(function(){ 
 
 step0();
-//step1();
-//step2();
-/*
-                    $.ajax({
-                        url: "commands2.php",
-                        type: "POST",
-                        data: { command:"refresh" },
-                        success: function(data){
-                      //        get_info();
-                            console.log('tt');
-                        },
-                        error: function(){
-                              console.log("yyyyyyy");
-                        }
-                    })
-                      */
     
     }) 
 function iframeOn()
@@ -89,7 +73,7 @@ $('iframe').attr('src',"http://"+current_url);
 
 
 
-        
+
                 function step1()
         {
 
@@ -118,11 +102,12 @@ $('iframe').attr('src',"http://"+current_url);
                 console.log(data);
                 current_temp =data;
                 buttons_info= data;
-                if(buttons_info==""||buttons_info.substring(11,14)!="end")step0();
+                if(buttons_info==""||buttons_info.substring(11,14)!="end"){step0();}
                 else 
                     {
                         fixButtonsStyle();
                         getTemp(current_temp);
+                        buttons_info="";
                     }
                 
 

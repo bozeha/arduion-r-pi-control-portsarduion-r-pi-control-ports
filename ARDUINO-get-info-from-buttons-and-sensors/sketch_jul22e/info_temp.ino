@@ -50,25 +50,35 @@ void loop()
       
        if(Serial.available()) // only if i receve string from r pi inter the if
         {
-          command2 = Serial.readString();   // get command from r pi      
+
+          //Serial.println('boaz harar');
           printArray(mainArray);    
           getTemp();
+          
+
+        /*
+          command2 = Serial.readString();   // get command from r pi      
+         if(command2=="\n")
+          {
+          
+           command2="";
+          }
+          else
+          {
+           Serial.println(command2);     
+            command2="";
+          }
+          */
           //
-         
+        } 
           /*
         
-         if(command2=="info")
-          {
-           
-          }
-          
          
           else if(command2=="temp")
           {
               getTemp();          
           }*/
                    
-        }
 }
 
 

@@ -140,5 +140,13 @@ iframe
     }
     
 }
-
+#popup_box h4,#popup_box p
+{
+text-align:right;
+}
+.modal-footer div
+{
+    max-width: 150px;
+    margin: 0 auto;
+}
 

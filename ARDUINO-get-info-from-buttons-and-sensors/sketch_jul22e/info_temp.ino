@@ -55,30 +55,8 @@ void loop()
           printArray(mainArray);    
           getTemp();
           
-
-        /*
-          command2 = Serial.readString();   // get command from r pi      
-         if(command2=="\n")
-          {
-          
-           command2="";
-          }
-          else
-          {
-           Serial.println(command2);     
-            command2="";
-          }
-          */
-          //
         } 
-          /*
-        
-         
-          else if(command2=="temp")
-          {
-              getTemp();          
-          }*/
-                   
+     
 }
 
 

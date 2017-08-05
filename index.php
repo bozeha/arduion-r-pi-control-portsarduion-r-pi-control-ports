@@ -13,143 +13,9 @@
 <!-- Latest compiled JavaScript -->
 <script  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/scripts/loop2.js"></script>
+<script type="text/javascript" src="/scripts/main.js"></script>
     <meta charset="UTF-8">
     <title>Document</title>
-<script type="text/javascript">
-$( document ).ready(function(){ 
-
-step0();
-    
-    }) 
-function iframeOn()
-{
-
-
-current_url =window.location.href+":8081";
-current_url = current_url.replace("http://", "");
-current_url = current_url.replace("/", "");
-current_url = current_url.replace("#", "");
-$('iframe').attr('src',"http://"+current_url);
-}
-                  function runCommand(command)
-                  {
-
-
-                    $.ajax({
-                        url: "commands.php",
-                        type: "POST",
-                        data: { command: command },
-                        success: function(data){
-                        
-                        },
-                        error: function(){
-                              console.log("yyyyyyy");
-                        }
-                    }).then(function(){step0()})//.then(function(){step1()})
-                    
-                   
-                  }
-
-
-        
-        function step0()
-        {
-
-              $.ajax({
-            url: "commands2.php",
-            type: "POST",
-            data: { command: "info" },
-            success: function(data){
-                console.log("v1");
-                step2();
-            },
-            
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-        }
-
-
-
-
-
-                function step1()
-        {
-
-              $.ajax({
-            url: "commands2.php",
-            type: "POST",
-            data: { command: "refresh" },
-            success: function(data){
-                step0();
-                console.log("v0");
-            },
-            
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-        }
-        
-
-        function step2()
-        {
-         $.ajax({
-            url: "get_info.php",
-            type: "POST",
-            success: function(data){
-                console.log(data);
-                current_temp =data;
-                buttons_info= data;
-                if(buttons_info==""||buttons_info.substring(11,14)!="end"){step0();}
-                else 
-                    {
-                        fixButtonsStyle();
-                        getTemp(current_temp);
-                        buttons_info="";
-                    }
-                
-
-            },
-            error: function(){
-                    console.log("yyyyyyy");
-            }
-            })
-
-        }
-
-
-        function fixButtonsStyle()
-        {
-
-        //buttons_info = buttons_info.replace("start", "");
-        //buttons_info = buttons_info.replace("end1", "");
-        buttons_info= buttons_info.substring(5, 11);
-        for(var x=5;x!=-1;x--)
-        {
-          if(buttons_info[x]==0)
-          {
-            $("#all-buttons .buttons-big:eq("+x+") img").css('filter','blur(0px)');
-          }
-          else
-          {
-            $("#all-buttons .buttons-big:eq("+x+") img").css('filter','blur(3px)');
-          }
-
-        }
-        }
-        function getTemp(current_temp)
-        {
-
-            $("#water_temp").text(current_temp.substring(25,30)+"°C");
-            if(current_temp.substring(25,30)>30)$("#water_temp").css("color","red")
-            $("#home_humidity").text(current_temp.substring(44,49)+"%");
-            if(current_temp.substring(44,49)>80)$("#home_humidity").css("color","red")
-            $("#home_temp").text(current_temp.substring(66,71)+"°C");
-            if(current_temp.substring(66,71)>40)$("#home_temp").css("color","red")
-        }
-</script>
 
 
 
@@ -161,21 +27,39 @@ $('iframe').attr('src',"http://"+current_url);
             <div id="logo" class="pull-left">
             </div>
             
-            <div class="pull-right" id="top-buttons" onclick="runCommand('reboot')">
+            <div class="pull-right btn btn-lg" data-toggle="modal" data-target="#myModal" id="top-buttons">
             </div>
-            <div class="pull-right"  style="bakcground-color:white;border:2px solid red;font-size:20px" onclick="step0()">
-           step0
-            </div>
-            <div class="pull-right"   style="bakcground-color:white;border:2px solid red;font-size:20px"  onclick="step1()">
-            step1
-            </div>
-            <div class="pull-right"   style="bakcground-color:white;border:2px solid red;font-size:20px"  onclick="step2()">
-            step2
-            </div>
-    
         </div>
     </div>
 </div>
+<!-- Modal popup -->
+    <div class="container" id="popup_box">
+        <div class="row">
+               
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-left" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">הודעה</h4>
+      </div>
+      <div class="modal-body">
+        <p>האם ברצונך להפעיל מחדש את המערכת</p>
+      </div>
+      <div class="modal-footer">
+        <div>
+            <button type="button" onclick="runCommand('reboot')" class="btn btn-default" data-dismiss="modal">כן</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">לא</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+            </div>
+        </div>
 <div id="main-con">
     <div class="container big-buttons">
         <div class="row">

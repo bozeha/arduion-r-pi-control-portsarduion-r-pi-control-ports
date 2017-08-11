@@ -94,6 +94,7 @@ $('iframe').attr('src',"http://"+current_url);
                         fixButtonsStyle();
                         getTemp(current_temp);
                         buttons_info="";
+                        loaderGif('off');
                     }
                 
 
@@ -135,3 +136,10 @@ $('iframe').attr('src',"http://"+current_url);
             $("#home_temp").text(current_temp.substring(66,71)+"°C");
             if(current_temp.substring(66,71)>40)$("#home_temp").css("color","red")
         }
+
+
+function loaderGif(todo)
+{
+    todo=="on"?$("#loader").css("display","block"):$("#loader").css("display","none");;
+    
+}

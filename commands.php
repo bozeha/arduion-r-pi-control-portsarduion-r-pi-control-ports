@@ -5,48 +5,17 @@ if (isset($_POST['command']))
     switch($_POST['command'])
     {
         case "fan":
-        $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
-        $output = shell_exec($command);
-        echo $output;
-        break;
-        
+        case "empty":
         case "light":
-        $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
-        $output = shell_exec($command);
-        echo $output;
-        break;
-
         case "skimmer":
-        $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
-        $output = shell_exec($command);
-        echo $output;
-        break;
-
         case "upload":
-        $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
-        $output = shell_exec($command);
-        echo $output;
-        break;
-
         case "wave":
-        $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
-        $output = shell_exec($command);
-        echo $output;
-        break;
-
-        case "last":
-        $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
-        $output = shell_exec($command);
-        echo $output;
-        break;
-
-
+        case "feed":
         case "info":
         $command = escapeshellcmd("sudo python ".$_POST['command'].".py");
         $output = shell_exec($command);
         echo $output;
         break;
-
 
         case "video":
         $command = escapeshellcmd("sudo motion");

@@ -1,17 +1,8 @@
 <?php
-
-$servername = "doitcom.ipagemysql.com";
-$username = "boze";
-$password = "boze!qaz";
+$servername = "localhost";
 $dbname = "aqua";
+$username = "boze";
+$password = "boze1234567";
+
 
 ?>
-<!--?php
-
-
-$servername = "doitcom.ipagemysql.com";
-$username = "boze";
-$password = "BOZE1234567";
-$dbname = "diyhtml";
-
-?-->

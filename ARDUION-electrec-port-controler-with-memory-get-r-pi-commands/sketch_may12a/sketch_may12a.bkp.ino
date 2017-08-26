@@ -24,7 +24,6 @@ void setup()
   pinMode(11, OUTPUT); //set pin 8 for  sending signal to open relay
   pinMode(12, OUTPUT); //set pin 8 for  sending signal to open relay
   pinMode(13, OUTPUT); //set pin 8 for  sending signal to open relay
-  pinMode(A0, OUTPUT); //set pin 8 for  sending signal to open relay
 
 
   for (int i = 2; i < 8; i++)
@@ -59,7 +58,7 @@ void setup()
     }  
   }
   
- digitalWrite(A0, HIGH);  //OUTO FEEDER OFF
+
 
 
 
@@ -78,7 +77,7 @@ void loop()//start loop
   {
     command = Serial.readString();   // get command from r pi      
   }      
-          if ((buttonNum1 == LOW)||(command == "fan")) //if we press on button 1
+          if ((buttonNum1 == LOW)||(command == "last")) //if we press on button 1
          {
            Serial.println("yyyyyyyyyyy");
           Serial.println("555555555555");
@@ -112,7 +111,7 @@ void loop()//start loop
              replaceRelay(11,pins_array[5]);
              command= "";
          }
-          if ((buttonNum5 == LOW)||(command == "empty")) //if we press on button 1
+          if ((buttonNum5 == LOW)||(command == "fan")) //if we press on button 1
          {
              pins_array[6] = (pins_array[6] == 0) ? 1 : 0;
              EEPROM.write(6, pins_array[6]);
@@ -125,16 +124,6 @@ void loop()//start loop
              EEPROM.write(7, pins_array[7]);
              replaceRelay(13,pins_array[7]);
              command= ""; // null the command variable
-         }
-          if ((command == "feed")) //if we press on button 1
-         {
-             
-             
-          Serial.println('A0');
-          digitalWrite(A0, LOW);  
-          delay(2000);
-          digitalWrite(A0, HIGH);  
-          command= ""; // null the command variable
          }
 
 }
@@ -154,7 +143,7 @@ void replaceRelay(int port,int value)
         digitalWrite(port, LOW);    
         
     }
-    delay(250);
+    delay(200);
 }
 
 

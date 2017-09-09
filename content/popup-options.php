@@ -2,18 +2,22 @@
 <script>
   $('document').ready(function(){
     getOptionsFromDb();
-    console.log(options_from_db);
   })
+  // var to save all options 
   options_from_db="";
+
+  // get current options form db
   function getOptionsFromDb() {
 
     $.post("content/schedule/schedule-data.php", function(data, status){
         options_from_db  =JSON.parse(data);
-        console.log(options_from_db);
         updatePopupOptions();
     });
 
 }
+
+
+/// update popup option window with the db data
 function updatePopupOptions()
 {
 var loop = 0;
@@ -21,20 +25,20 @@ var num_of_elements= options_from_db['id'].length;
 for(;loop!=num_of_elements;loop++)
 {
   $("#myModal2 ."+options_from_db['element'][loop]+" select.start-time").val(options_from_db['hour_start'][loop]);
-  console.log(options_from_db['element'][loop]);
-  console.log(options_from_db['active'][loop]);
   $("#myModal2 ."+options_from_db['element'][loop]+" select.end-time").val(options_from_db['hour_end'][loop]);
   options_from_db['active'][loop]==1?$("#myModal2 ."+options_from_db['element'][loop]+" .form-check-input").attr('checked', true):$("#myModal2 ."+options_from_db['element'][loop]+" .form-check-input").attr('checked', false);
-  //$('#myModal2 .light .form-check-input').attr('checked', true);
-  //if ($('#myModal2 .light .form-check-input').is(":checked")){console.log('on')}
 }
 }
 
+
+// popup option window
   function openOptions() {
     $('#myModal2').modal();
 
   }
 
+
+/// get all hours for selection option 
   function loopHour() {
     for (loop0 = 0; loop0 != 24; loop0++) {
         document.write("<option>");  
@@ -46,36 +50,34 @@ for(;loop!=num_of_elements;loop++)
     }
   }
 
+
+// send all new options to db 
   function sendOptionsToDb()
   {
      var loop = 0;
      var current_length=options_from_db["id"].length;
+     
+     // get current selections
      for (;loop!= current_length;loop++)
      {
-
         {
  if ( $("#myModal2 ."+options_from_db['element'][loop]+" .form-check-input").is(':checked') )
         {
-          console.log('g');
           options_from_db['active'][loop]=1;
         }
         else
         {
-          console.log('s');
           options_from_db['active'][loop]=0;
         }
+
           options_from_db['hour_start'][loop]  = $("#myModal2 ."+options_from_db['element'][loop]+" select.start-time").val()
           options_from_db['hour_end'][loop] = $("#myModal2 ."+options_from_db['element'][loop]+" select.end-time").val();
         }
      }
-      console.log(options_from_db);
+      //console.log(options_from_db);
 
- 
-/* $.post("content/schedule/schedule-data-send.php", options_from_db)
-  .done(function( data ) {
-    console.log("dataaa:"+data+"end data");
-  }); 
- */
+
+
 
 $.ajax({
     type: 'POST',

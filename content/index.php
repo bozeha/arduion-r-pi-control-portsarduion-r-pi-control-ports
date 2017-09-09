@@ -107,8 +107,7 @@
             <!-- <a href="javascript:void(0)" onclick="runCommand('last')" class="post"><img src='images/q.png' /></a> -->
           </div>
           <div class="buttons-big">
-            <a href="javascript:void(0)" id="display-video" onclick="runCommand('video');$('#stop-video').css('display','block');$('#display-video').css('display','none');iframeOn()" class="post"><img src='images/video.jpg' /></a>
-            <a href="javascript:void(0)" id="stop-video" style="display:none" onclick="runCommand('close-video');$('#stop-video').css('display','block');$('#display-video').css('display','none')" class="post"><img src='images/video.jpg' /></a>
+             <a href="javascript:void(0)" id="display-video" onclick="iframeOn()" class="post"><img src='images/video.jpg' /></a> 
           </div>
         </div>
       </div>

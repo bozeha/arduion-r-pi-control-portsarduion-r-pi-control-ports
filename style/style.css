@@ -212,7 +212,8 @@ width:50px;
 }
 #myModal2 h2
 {
-    font-size:20px
+    font-size:20px;
+    text-align:left;
 }
 #myModal2 .active
 {
@@ -228,11 +229,7 @@ margin-top: 15px;
 {
     position:absolute;
 }
-/* #popup-button
-{
 
-}
- */
 #popup-button {
 	-moz-box-shadow: 0px 10px 14px -7px #276873;
 	-webkit-box-shadow: 0px 10px 14px -7px #276873;

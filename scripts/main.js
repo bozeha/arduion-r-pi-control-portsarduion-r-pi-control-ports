@@ -1,22 +1,47 @@
 
-
+is_mobile = false;
 
 $( document ).ready(function(){ 
+
+if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ console.log( "You are in mobile browser");
+ is_mobile = true;
+}
+
 
 step0();
     
     }) 
 
 function iframeOn()
-{
+                {
+            if(is_mobile)
+                {
+                    setTimeout(function(){    
+                    $('iframe').attr('src','')
+                }, 60000);
+                current_url =window.location.href+":8081";
+                current_url = current_url.replace("http://", "");
+                current_url = current_url.replace("/", "");
+                current_url = current_url.replace("#", "");
+                $('iframe').attr('src',"http://"+current_url);
+                runCommand('video');    
+                }
+            else{
+
+                current_url =window.location.href+":8081";
+                current_url = current_url.replace("http://", "");
+                current_url = current_url.replace("/", "");
+                current_url = current_url.replace("#", "");
+                $('iframe').attr('src',"http://"+current_url);
+                runCommand('video');
+
+                }
+            
+            }
 
 
-current_url =window.location.href+":8081";
-current_url = current_url.replace("http://", "");
-current_url = current_url.replace("/", "");
-current_url = current_url.replace("#", "");
-$('iframe').attr('src',"http://"+current_url);
-}
+
                   function runCommand(command)
                   {
 

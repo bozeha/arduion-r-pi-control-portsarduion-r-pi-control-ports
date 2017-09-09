@@ -134,7 +134,7 @@
       </div>
     </div>
   </div>
- xxxxxxx <?php include 'schedule/schedule-data.php' ?>yyyyyyyy
+ <!-- xxxxxxx <?php include 'schedule/schedule-data.php' ?>yyyyyyyy -->
 </body>
 
 </html>

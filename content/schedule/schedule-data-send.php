@@ -1,6 +1,11 @@
     <?php
-
+header('Content-Type: application/json');
+if (isset($_POST['options_from_db'])) { 
     $update_array =$_POST['options_from_db'];
+// echo json_encode($update_array);
+} 
+
+
 
 
 $servername = "localhost";
@@ -8,38 +13,21 @@ $dbname = "aqua";
 $username = "boze";
 $password = "boze1234567";
 $loop =0;
-
-echo $update_array["id"];
-echo "x";
-/*      $conn = mysqli_connect($servername, $username, $password, $dbname);
+ $conn = mysqli_connect($servername, $username, $password, $dbname);
 // Check connection
  if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 } 
 
- $sql = "UPDATE MyGuests SET lastname='Doe' WHERE id=2";
+//echo "xxx";
+foreach ($update_array["element"] as $value) {
+mysqli_query($conn,"UPDATE time_control SET active='".$update_array["active"][$loop]."' WHERE element='".$update_array["element"][$loop]."'");
+mysqli_query($conn,"UPDATE time_control SET hour_start='".$update_array["hour_start"][$loop]."' WHERE element='".$update_array["element"][$loop]."'");
+mysqli_query($conn,"UPDATE time_control SET hour_end='".$update_array["hour_end"][$loop]."' WHERE element='".$update_array["element"][$loop]."'");
 
- $sql = "SELECT id, element, hour_start, hour_end, active FROM time_control";
-$result = mysqli_query($conn, $sql);
+$loop++;
+}
 
-if ($result->num_rows > 0) {
-    while($row = mysqli_fetch_assoc($result)) {
-            $all_content['id'][$loop] = $row["id"];
-            $all_content['element'][$loop] = $row["element"];
-            $all_content['hour_start'][$loop] = $row["hour_start"];
-            $all_content['hour_end'][$loop] = $row["hour_end"];
-            $all_content['active'][$loop] = $row["active"];
-             $loop++;
-             }       
-        
-        }
-        else{
-         
-        }
-$myJSON = json_encode($all_content);
-echo json_encode($all_content);
- */
 
- //echo $all_content['element'][0];
 mysqli_close($conn);  
 ?>

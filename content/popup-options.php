@@ -70,23 +70,22 @@ for(;loop!=num_of_elements;loop++)
      }
       console.log(options_from_db);
 
-
-
-/* 
-    $.post("content/schedule/schedule-data-send.php", options_from_db, function(data, status){
-        //options_from_db  =JSON.parse(data);
-        console.log(data);
-        
-    }); */
-
-
-
  
-$.post("content/schedule/schedule-data-send.php", options_from_db)
+/* $.post("content/schedule/schedule-data-send.php", options_from_db)
   .done(function( data ) {
     console.log("dataaa:"+data+"end data");
   }); 
+ */
 
+$.ajax({
+    type: 'POST',
+    dataType: 'json',
+    url: 'content/schedule/schedule-data-send.php',
+    data:{"options_from_db":options_from_db},
+    success: function(msg){
+        console.log('wow' + msg);
+    }
+});
   }
 </script>
 <div class="container" id="popup_box_options">
@@ -243,7 +242,7 @@ $.post("content/schedule/schedule-data-send.php", options_from_db)
                 <div class="active-option col-md-2">
                   <label class="form-check-label">הפעל</label><input type="checkbox" class="form-check-input active">
                 </div>
-                <span onclick= "sendOptionsToDb()">xxxxx</span>
+                <span id="popup-button" onclick= "sendOptionsToDb()">עדכן</span>
               </div>
 
             </div>

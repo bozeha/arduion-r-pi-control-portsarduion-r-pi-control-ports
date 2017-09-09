@@ -13,6 +13,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <script>
+
+
+$(document).ready(function(){
+    $('#inputPassword4').keypress(function(e){
+      if(e.keyCode==13)
+      $('#main_button').click();
+    });
+});
+
+
+
+
     function testPass(pass) {
       $.ajax({
 
@@ -31,6 +43,10 @@
       });
 
     }
+
+
+    
+    
   </script>
   <title>Document</title>
 <style>
@@ -68,13 +84,12 @@ padding-top: 100px;
     <div id="main-div">
       <form class="form-inline col-xs-4" id="main-form">
         <div class="form-group">
-          <!-- <label for="inputPassword4">Password</label> -->
           <input type="password" id="inputPassword4"  placeholder="Enter password" class="form-control" aria-describedby="passwordHelpInline">
           <small id="passwordHelpInline" class="text-muted">
         </small>
         </div>
       </form>
-        <button class="btn-primary"  onclick="testPass($('#inputPassword4').val())">אשר</button>
+        <button id="main_button" class="btn-primary"  onclick="testPass($('#inputPassword4').val())">אשר</button>
     </div>
   </div>
   </div>

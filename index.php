@@ -10,7 +10,6 @@ if (($_SESSION["log"] == "true")&&(time() - $_SESSION['timeout'] < 1800) )
 }
 else
 {
-    //echo $_SESSION["timeout"]."now:".time();  
     include "content/main-login.php" ;
 }
  ?>

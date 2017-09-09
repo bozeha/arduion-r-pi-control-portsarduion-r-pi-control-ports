@@ -92,6 +92,16 @@ iframe
     background-repeat: no-repeat;
     background-size: contain;
 }
+#top-buttons-options
+{
+    width: 70px;
+    height: 100px;
+    background-image: url(../images/options.png);
+    background-repeat: no-repeat;
+        background-size: 60px;
+    background-position-y: 50%;
+    cursor:pointer;
+}
 #top-buttons
 {
     width: 70px;
@@ -180,4 +190,41 @@ width:40%;
     top: 50%;
     left: 45%;
     position: relative;
+}
+#myModal2 
+{
+    direction:rtl;
+}
+#myModal2 .modal-content
+{
+
+    padding:20px;
+}
+#myModal2 .container
+{
+    width:100%;
+}
+
+#myModal2 .image-settings img
+{
+width:50px;
+
+}
+#myModal2 h2
+{
+    font-size:20px
+}
+#myModal2 .active
+{
+zoom: 2;
+margin-top: 15px;
+}
+
+#myModal2 .active-option
+{
+    position:relative;
+}
+#myModal2 .active-option .form-check-label
+{
+    position:absolute;
 }

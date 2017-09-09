@@ -16,24 +16,7 @@
   <!-- <script type="text/javascript" src="/scripts/loop2.js"></script> -->
   <script type="text/javascript" src="/scripts/main.js"></script>
   <script type="text/javascript" src="/scripts/popup.js"></script>
- <!-- <script>
- function testPass(pass){
-$.ajax({
 
-    url: "content/login.php",
-    type : 'POST',
-    data: {'password':pass},
-    success : function(data) {              
-        alert('Data: '+data);
-    },
-    error : function(request,error)
-    {
-        alert("Request: "+JSON.stringify(request));
-    }
-});
-
-    }
- </script> -->
   <meta charset="UTF-8">
   <title>Document</title>
 </head>
@@ -52,9 +35,17 @@ $.ajax({
 
         <div class="pull-right btn btn-lg" onclick="popUpNow(x={'comm':'reboot','title':'הודעה','mess':'האם ברצונך להפעיל מחדש את המערכת','b1':'כן','b2':'לא'})" id="top-buttons">
         </div>
+        <div class="pull-right btn btn-lg" onclick="openOptions()" id="top-buttons-options">
+        </div>
       </div>
     </div>
   </div>
+
+
+  <!-- Modal popup options include -->
+
+  <?php include "popup-options.php"; ?>
+  <!-- Modal popup options include -->
   <!-- Modal popup -->
   <div class="container" id="popup_box">
     <div class="row">
@@ -143,6 +134,7 @@ $.ajax({
       </div>
     </div>
   </div>
+ xxxxxxx <?php include 'schedule/schedule-data.php' ?>yyyyyyyy
 </body>
 
 </html>

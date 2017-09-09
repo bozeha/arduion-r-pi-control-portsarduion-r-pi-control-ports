@@ -2,7 +2,7 @@
 
 
 $x=0;
-/*
+
 for(;$x!=-100;$x++)
 {
 
@@ -11,7 +11,7 @@ $txt = $x;
 fwrite($myfile, $txt);
 fclose($myfile);
 
-}*/
+}
 
 
 

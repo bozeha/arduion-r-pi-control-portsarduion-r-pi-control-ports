@@ -1,9 +1,13 @@
 <?php
+/* include "../settings/connect.php"; */
 session_start();
- $servername = "localhost";
+  $servername = "localhost";
 $dbname = "aqua";
 $username = "boze";
 $password = "boze1234567";
+ 
+ 
+
 if (isset($_POST["password"]) && !empty($_POST["password"])) {
     $current_password = $_POST["password"];
   //echo $current_password;

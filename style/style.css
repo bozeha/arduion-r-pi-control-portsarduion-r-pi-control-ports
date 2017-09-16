@@ -269,3 +269,12 @@ margin-top: 15px;
 	position:relative;
 	top:1px;
 }
+ @media screen and (max-width: 768px)
+{
+
+    #myModal2 .form-group
+    {
+        float:right;
+
+    }
+}

@@ -1,7 +1,7 @@
     <?php
 $servername = "localhost";
 $dbname = "aqua";
-$username = "boze";
+$username = "boze3";
 $password = "boze1234567";
 $loop =0;
 

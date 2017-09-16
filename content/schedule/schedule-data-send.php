@@ -10,7 +10,7 @@ if (isset($_POST['options_from_db'])) {
 
 $servername = "localhost";
 $dbname = "aqua";
-$username = "boze";
+$username = "boze3";
 $password = "boze1234567";
 $loop =0;
  $conn = mysqli_connect($servername, $username, $password, $dbname);

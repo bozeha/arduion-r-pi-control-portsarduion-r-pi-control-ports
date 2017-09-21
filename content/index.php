@@ -37,6 +37,8 @@
         </div>
         <div class="pull-right btn btn-lg" onclick="openOptions()" id="top-buttons-options">
         </div>
+        <div class="pull-right btn btn-lg" onclick="openOptionsFeed()" id="top-buttons-options-feed">
+        </div>
       </div>
     </div>
   </div>
@@ -46,6 +48,14 @@
 
   <?php include "popup-options.php"; ?>
   <!-- Modal popup options include -->
+  
+  
+  <!-- Modal popup options include -->
+
+  <?php include "popup-options-feed.php"; ?>
+  <!-- Modal popup options include -->
+  
+  
   <!-- Modal popup -->
   <div class="container" id="popup_box">
     <div class="row">

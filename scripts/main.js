@@ -3,6 +3,11 @@ is_mobile = false;
 
 $( document ).ready(function(){ 
 
+getOptionsFromDb();
+getOptionsFeedFromDb();
+
+
+
 if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
  console.log( "You are in mobile browser");
  is_mobile = true;

@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost";
 $dbname = "aqua";
-$username = "boze";
+$username = "boze3";
 $password = "boze1234567";
 $loop =0;
 
@@ -13,7 +13,7 @@ $loop =0;
 } 
 
  
- $sql = "SELECT id, element, hour_start, hour_end, active FROM feed_control";
+ $sql = "SELECT id, hour_feed, active FROM feed_control";
 $result = mysqli_query($conn, $sql);
 
 if ($result->num_rows > 0) {

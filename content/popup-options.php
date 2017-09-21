@@ -1,7 +1,7 @@
 <script>
-  $('document').ready(function() {
+  /* $('document').ready(function() {
       getOptionsFromDb();
-    })
+    }) */
     // var to save all options
   options_from_db = "";
 

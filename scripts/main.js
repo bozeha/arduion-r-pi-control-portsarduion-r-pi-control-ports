@@ -25,21 +25,21 @@ function iframeOn()
                     setTimeout(function(){    
                     $('iframe').attr('src','')
                 }, 60000);
+                runCommand('video');    
                 current_url =window.location.href+":8081";
                 current_url = current_url.replace("http://", "");
                 current_url = current_url.replace("/", "");
                 current_url = current_url.replace("#", "");
                 $('iframe').attr('src',"http://"+current_url);
-                runCommand('video');    
                 }
             else{
 
+                runCommand('video');
                 current_url =window.location.href+":8081";
                 current_url = current_url.replace("http://", "");
                 current_url = current_url.replace("/", "");
                 current_url = current_url.replace("#", "");
                 $('iframe').attr('src',"http://"+current_url);
-                runCommand('video');
 
                 }
             

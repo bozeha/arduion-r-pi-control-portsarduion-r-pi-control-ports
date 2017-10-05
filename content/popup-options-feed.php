@@ -122,7 +122,7 @@
                     </script>
                   </select>
                 </div>
-                <div class="active-option col-md-2 col-xs-12">
+                <div class="active-option col-md-2 col-xs-4">
                   <label class="form-check-label">הפעל</label>
                   <input type="checkbox" class="form-check-input active">
                 </div>
@@ -143,7 +143,7 @@
                     </script>
                   </select>
                 </div>
-                <div class="active-option col-md-2 col-xs-12">
+                <div class="active-option col-md-2 col-xs-4">
                   <label class="form-check-label">הפעל</label>
                   <input type="checkbox" class="form-check-input active">
                 </div>
@@ -165,7 +165,7 @@
                     </script>
                   </select>
                 </div>
-                <div class="active-option col-md-2 col-xs-12">
+                <div class="active-option col-md-2 col-xs-4">
                   <label class="form-check-label">הפעל</label>
                   <input type="checkbox" class="form-check-input active">
                 </div>
@@ -187,7 +187,7 @@
                     </script>
                   </select>
                 </div>
-                <div class="active-option col-md-2 col-xs-12">
+                <div class="active-option col-md-2 col-xs-4">
                   <label class="form-check-label">הפעל</label>
                   <input type="checkbox" class="form-check-input active">
                 </div>

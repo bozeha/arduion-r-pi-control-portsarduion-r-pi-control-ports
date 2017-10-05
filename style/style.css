@@ -283,3 +283,15 @@ margin-top: 15px;
 
     }
 }
+
+/*  popup style */
+
+div.modal-header
+{
+    padding:0px;
+}
+div.modal-header .close
+{
+    margin-top: -16px;
+    font-size: 35px;
+}

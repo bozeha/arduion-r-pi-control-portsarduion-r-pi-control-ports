@@ -133,6 +133,8 @@
             <span id="home_humidity"></span>
             <p>טמפרטורת המים באקוריום</p>
             <span id="water_temp"></span>
+            <p>רמת מליחות המים</p>
+            <span id="salinity"></span>
 
           </div>
         </div>

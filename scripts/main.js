@@ -158,7 +158,10 @@ function iframeOn()
         }
         function getTemp(current_temp)
         {
-
+            
+            var reg_string = current_temp.match(/Salinity=.(?:(?!w).)*/g);// get the salinity
+            current_temp = current_temp.replace(reg_string,'');// remove the salinity from string
+            Salinity(reg_string);// convert numbers to the real salinity 
             $("#water_temp").text(current_temp.substring(25,30)+"°C");
             if(current_temp.substring(25,30)>30)$("#water_temp").css("color","red")
             $("#home_humidity").text(current_temp.substring(44,49)+"%");
@@ -172,4 +175,49 @@ function loaderGif(todo)
 {
     todo=="on"?$("#loader").css("display","block"):$("#loader").css("display","none");;
     
+}
+
+function Salinity(reg_string)
+{
+
+    var salinity_number = reg_string[0].replace("Salinity=",""); 
+    salinity_number=+salinity_number;
+    switch (true)
+    {
+        case  (salinity_number >79) :
+        $("#salinity").text('LOW');
+        $("#salinity").css('color','red');
+        break;
+        case  (80>salinity_number && salinity_number >77) :
+        $("#salinity").text('1.019');
+        $("#salinity").css('color','red');
+        break;
+        case  (78>salinity_number && salinity_number >75) :
+        $("#salinity").text('1.020');
+        $("#salinity").css('color','blue');
+        break;
+        case  (salinity_number ==75) :
+        $("#salinity").text('1.021');
+        $("#salinity").css('color','blue');
+        break;
+        case  (75>salinity_number && salinity_number >72) :
+        $("#salinity").text('1.022');
+        $("#salinity").css('color','blue');
+        break;
+        case  (73>salinity_number && salinity_number >70) :
+        $("#salinity").text('1.023');
+        $("#salinity").css('color','blue');
+        break;
+        case  (71>salinity_number && salinity_number >68) :
+        $("#salinity").text('1.024');
+        $("#salinity").css('color','red');
+        break;
+        case  (salinity_number < 69) :
+        $("#salinity").text('height');
+        $("#salinity").css('color','red');
+        break;
+    }
+
+
+
 }

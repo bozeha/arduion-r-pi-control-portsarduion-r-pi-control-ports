@@ -258,7 +258,9 @@ request({
   
 }, function(error, response, body) {
     
-
+console.log("error:"+error);
+console.log("response:"+JSON.stringify(response));
+console.log("body:"+body);
 
 });
 

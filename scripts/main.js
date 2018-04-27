@@ -192,27 +192,27 @@ function Salinity(reg_string)
         $("#salinity").text('1.019');
         $("#salinity").css('color','red');
         break;
-        case  (78>salinity_number && salinity_number >75) :
+        case  (78>salinity_number && salinity_number >72) :
         $("#salinity").text('1.020');
         $("#salinity").css('color','blue');
         break;
-        case  (salinity_number ==75) :
+        case  (salinity_number ==72) :
         $("#salinity").text('1.021');
         $("#salinity").css('color','blue');
         break;
-        case  (75>salinity_number && salinity_number >72) :
+        case  (72>salinity_number && salinity_number >70) :
         $("#salinity").text('1.022');
         $("#salinity").css('color','blue');
         break;
-        case  (73>salinity_number && salinity_number >70) :
+        case  (70>salinity_number && salinity_number >68) :
         $("#salinity").text('1.023');
         $("#salinity").css('color','blue');
         break;
-        case  (71>salinity_number && salinity_number >68) :
+        case  (68>salinity_number && salinity_number >66) :
         $("#salinity").text('1.024');
         $("#salinity").css('color','red');
         break;
-        case  (salinity_number < 69) :
+        case  (salinity_number < 66) :
         $("#salinity").text('height');
         $("#salinity").css('color','red');
         break;

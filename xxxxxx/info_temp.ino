@@ -23,13 +23,10 @@ int inPin3 = 4;
 int inPin4 = 5;
 int inPin5 = 6;
 int inPin6 = 7;
-int inPin7 = 9;// ultrasonic
-int outPin8 = 8;// ultrasonic
 int mainArray[6];
 String command2 ;
 int global_loop =0;
 
-int ultra_number=0;
 
 void setup()
 {
@@ -45,9 +42,6 @@ Serial.begin(9600);
   pinMode(inPin4, INPUT);
   pinMode(inPin5, INPUT);
   pinMode(inPin6, INPUT);
-  pinMode(inPin7,INPUT);//ultrasonic 
-  pinMode(outPin8,OUTPUT);//ultrasonic
-
          //  setup serial
 
 }
@@ -61,33 +55,12 @@ void loop()
 
           //Serial.println('boaz harar');
           printArray(mainArray);    
-          getSalinity();
           getTemp();
-          
           
         } 
      
 }
-void getSalinity()
-{
 
-  pinMode(inPin7,INPUT);//determine the dis_in (pin 11) as the input from the sensor 
-  pinMode(outPin8,OUTPUT);// determin the dis_out (pin 10) as the output to the sensor 
-  digitalWrite(inPin7,LOW);//send low ping to sensor /for start the sensor (cycle for turn on sensor = low high low )
-  delayMicroseconds(2);
-  digitalWrite(outPin8,HIGH);//send heigh ping to sensor /for start the sensor (cycle for turn on sensor = low high low )
-  delayMicroseconds(10);
-   digitalWrite(outPin8,LOW);//send low ping to sensor /for start the sensor (cycle for turn on sensor = low high low )
-
-ultra_number=  pulseIn(inPin7,HIGH);// get the sensor pulse (get the destination from sensor to object ->back and forth in feet)
-
-ultra_number=ultra_number/2;//cancel back and forth -> convert to only one way 
-ultra_number=ultra_number/3.01;//convert from feet to cm  (1 feet = 30.1 cm )
-Serial.print("Salinity=");
-Serial.print(ultra_number);//print to echo the destination in cm 
-
-
-}
 
 
   void getTemp()
@@ -128,8 +101,6 @@ total = 0; // reset total
 void printArray(int mainArray[])
 {
 global_loop++;
-
-///// get what of the gates are open and what close  1-6 
 for(int lop=0;lop!=6;lop++)
 {
   mainArray[lop]=0;
@@ -140,7 +111,6 @@ for(int lop=0;lop!=6;lop++)
   mainArray[3] = digitalRead(inPin4);   // read the input pin
   mainArray[4] = digitalRead(inPin5);   // read the input pin
   mainArray[5] = digitalRead(inPin6);   // read the input pin
-
 
 
  
@@ -155,7 +125,5 @@ for(int lop=0;lop!=6;lop++)
  // Serial.print(global_loop);
   //Serial.println();
 }
-
-
 
 

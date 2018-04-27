@@ -1,10 +1,16 @@
-//for home temp
 
+
+#include <Wire.h>
+#include <LCD.h>
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); // Addr, En, Rw, Rs, d4, d5, d6, d7, backlighpin, polarity
+int lcd_button_counter = 0; 
+
+//for home temp
 #include "DHT.h"
 #define dht_apin A0 // Analog Pin sensor is connected to
  
 dht DHT;
-
 //for water temp 
 // LM35 temp sensor connected to analogue input A1, +5volt and ground
 
@@ -25,14 +31,35 @@ int inPin5 = 6;
 int inPin6 = 7;
 int inPin7 = 9;// ultrasonic
 int outPin8 = 8;// ultrasonic
+int ultra_number=0;
 int mainArray[6];
 String command2 ;
 int global_loop =0;
 
-int ultra_number=0;
 
-void setup()
-{
+
+
+int sensorPin = 12;
+//int sensorValue = 0;
+
+
+void setup() {
+   
+
+    lcd.begin(16,2);
+    lcd.backlight();
+    lcd.setCursor(0, 0);
+    lcd.print("Wellcome click");
+    lcd.setCursor(0, 1);
+    lcd.print("for more info");
+    pinMode(inPin7,INPUT);//ultrasonic 
+    pinMode(outPin8,OUTPUT);//ultrasonic
+
+    
+pinMode(sensorPin,OUTPUT);//LCD
+digitalWrite(sensorPin,LOW);//button for lcd
+
+    
 
 // for water sensor a1 analog input
   analogReference(INTERNAL); // use the internal ~1.1volt Aref | change to (INTERNAL1V1) for a Mega
@@ -45,29 +72,103 @@ Serial.begin(9600);
   pinMode(inPin4, INPUT);
   pinMode(inPin5, INPUT);
   pinMode(inPin6, INPUT);
-  pinMode(inPin7,INPUT);//ultrasonic 
-  pinMode(outPin8,OUTPUT);//ultrasonic
 
          //  setup serial
 
 }
-void loop() 
-{
+
+void loop() {
+
+  //sensorValue = analogRead(sensorPin);
+  //digitalWrite(sensorPin,LOW);
+ // Serial.println(sensorPin);
+ // Serial.println(sensorValue);
 
 
-      
-       if(Serial.available()) // only if i receve string from r pi inter the if
+         if((Serial.available()) ||(digitalRead(sensorPin) ==HIGH)) // only if i receve string from r pi inter the if or if button is pressed
         {
 
           //Serial.println('boaz harar');
           printArray(mainArray);    
           getSalinity();
           getTemp();
-          
+
+
+
+
+
+  
+  if(digitalRead(sensorPin) ==HIGH)
+  {
+   // Serial.println("ssss");
+   /* 
+     printArray(mainArray);    
+    getSalinity();
+      getTemp();
+
+      */
+    lcd_button_counter++;
+    switch(lcd_button_counter)
+    {
+      case 0:
+      lcd.begin(16,2);
+      lcd.backlight();
+      lcd.setCursor(0, 0);
+      lcd.print("Wellcome click");
+      lcd.setCursor(0, 1);
+      lcd.print("for more info");
+      
+      break;
+      
+      case 1:
+      lcd.begin(16,2);
+      lcd.backlight();
+      lcd.setCursor(0, 0);
+      lcd.print("Water Temperature : ");
+      lcd.setCursor(0, 1);
+      lcd.print(tempc, 2);
+      lcd.setCursor(6, 1);
+      lcd.print("C");
+      break;
+
+ case 2:
+      lcd.begin(16,2);
+      lcd.backlight();
+      lcd.setCursor(0, 0);
+      lcd.print("Home Humidity :");
+      lcd.setCursor(0, 1);
+      lcd.print(DHT.humidity);
+      lcd.setCursor(4, 1);
+      lcd.print("%");
+      break;
+
+ case 3:
+      lcd.begin(16,2);
+      lcd.backlight();
+      lcd.setCursor(0, 0);
+      lcd.print("Home Temperature:");
+      lcd.setCursor(0, 1);
+      lcd.print(DHT.temperature);
+      lcd.setCursor(5, 1);
+      lcd.print("C");
+      break;
+      
+      case 4:
+      lcd.begin(16,2);
+      lcd.backlight();
+      lcd.setCursor(0, 0);
+      lcd.print("Water Salinity:");
+      lcd.setCursor(0, 1);
+      lcd.print(ultra_number);
+      lcd_button_counter= -1;
+      break;
+    }
+  }
           
         } 
-     
+
 }
+
 void getSalinity()
 {
 
@@ -88,7 +189,6 @@ Serial.print(ultra_number);//print to echo the destination in cm
 
 
 }
-
 
   void getTemp()
   {
@@ -128,8 +228,8 @@ total = 0; // reset total
 void printArray(int mainArray[])
 {
 global_loop++;
-
 ///// get what of the gates are open and what close  1-6 
+
 for(int lop=0;lop!=6;lop++)
 {
   mainArray[lop]=0;
@@ -140,7 +240,6 @@ for(int lop=0;lop!=6;lop++)
   mainArray[3] = digitalRead(inPin4);   // read the input pin
   mainArray[4] = digitalRead(inPin5);   // read the input pin
   mainArray[5] = digitalRead(inPin6);   // read the input pin
-
 
 
  
@@ -155,7 +254,5 @@ for(int lop=0;lop!=6;lop++)
  // Serial.print(global_loop);
   //Serial.println();
 }
-
-
 
 

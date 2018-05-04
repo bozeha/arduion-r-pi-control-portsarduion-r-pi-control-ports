@@ -11,12 +11,13 @@ get_ex_ip();
 
 function update_ip(the_new_ip)
     {
+		console.log(the_new_ip);
         // Configure the request
         var options = {
             url: 'http://justdo.co.il/aqua/content/send-ip.php',
             method: 'GET',
             headers: headers,
-            qs: {'ip': the_new_ip.ip , 'name': 'boze','date':get_date()}
+            qs: {'ip': the_new_ip , 'name': 'boze','date':get_date()}
         }
 
         // Start the request
@@ -31,7 +32,7 @@ function update_ip(the_new_ip)
 function get_ex_ip()
 {
     var options = {
-        url: 'https://api.ipify.org?format=json',
+        url: 'http://justdo.co.il/aqua/whatismyip.php',
         method: 'GET',
         headers: headers
     }
@@ -41,7 +42,7 @@ function get_ex_ip()
         if (!error && response.statusCode == 200) {
             // Print out the response body
              
-            update_ip(JSON.parse(body));
+            update_ip(body);
         }
     })
 }
